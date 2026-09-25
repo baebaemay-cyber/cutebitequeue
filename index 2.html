@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>cutebitequeue — ร้านกดบัตรคอนเสิร์ต</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,500;0,600;0,700;1,600&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    --bg:#eaf5fc;
+    --check:#d9ecf8;
+    --cream:#fffaf2;
+    --brown:#4a3728;
+    --brown-soft:#8a7362;
+    --pink:#ffcfe1;
+    --pink-deep:#ff9ec9;
+    --blue:#cfe8fb;
+    --yellow:#fbe8a3;
+    --lav:#ddceef;
+    --mint:#cdeee0;
+  }
+  html{scroll-padding-top:calc(78px + env(safe-area-inset-top,0px));}
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(90deg, var(--check) 50%, transparent 50%),
+      linear-gradient(var(--check) 50%, transparent 50%);
+    background-size:34px 34px;
+    color:var(--brown);
+    font-family:'Mali', 'IBM Plex Sans Thai', sans-serif;
+    line-height:1.65;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px;}
+  .brand-font{font-family:'Baloo 2','Mali',sans-serif;}
+
+  /* header */
+  header{
+    position:sticky;top:env(safe-area-inset-top,0px);
+    background:rgba(234,245,252,0.85);backdrop-filter:blur(6px);
+    border-bottom:2px dashed var(--pink-deep);
+    z-index:10;
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{font-family:'Baloo 2';font-weight:800;font-size:1.3rem;color:var(--brown);}
+  .logo span{color:var(--pink-deep);}
+  .navlinks{display:flex;gap:22px;font-size:0.88rem;font-weight:600;}
+  .navlinks a{text-decoration:none;}
+  @media (max-width:640px){.navlinks{display:none;}}
+
+  /* hero */
+  .hero{padding:64px 0 44px;text-align:center;position:relative;}
+  .sticker{position:absolute;font-size:1.4rem;opacity:0.85;}
+  .hero h1{
+    font-family:'Mali';font-weight:700;font-size:clamp(1.9rem,5vw,2.9rem);
+    margin:0 auto 14px;max-width:16ch;color:#fffdf8;
+    -webkit-text-stroke:2px var(--brown);
+    text-shadow:3px 3px 0 rgba(74,55,40,0.18);
+    line-height:1.3;
+  }
+  .hero p{color:var(--brown-soft);max-width:44ch;margin:0 auto 34px;font-size:1.02rem;}
+
+  /* keycap nav */
+  .keycaps{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;padding-bottom:8px;}
+  .keycap{
+    width:132px;aspect-ratio:1/0.92;
+    border-radius:18px;border:3px solid var(--brown);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    text-decoration:none;color:var(--brown);
+    box-shadow:0 6px 0 var(--brown);
+    transition:transform .12s ease, box-shadow .12s ease;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,.55) 50%, transparent 50%),
+      linear-gradient(rgba(255,255,255,.55) 50%, transparent 50%);
+    background-size:9px 9px;
+  }
+  .keycap:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--brown);}
+  .keycap:active{transform:translateY(6px);box-shadow:0 0 0 var(--brown);}
+  .keycap.c1{background-color:var(--pink);}
+  .keycap.c2{background-color:var(--blue);}
+  .keycap.c3{background-color:var(--yellow);}
+  .keycap .icon{font-size:1.9rem;}
+  .keycap .label{font-weight:700;font-size:0.86rem;}
+
+  section{padding:52px 0;}
+  .section-head{text-align:center;margin-bottom:30px;}
+  .section-head h2{font-family:'Mali';font-weight:700;font-size:1.7rem;margin:0 0 6px;}
+  .section-head p{color:var(--brown-soft);margin:0;font-size:0.92rem;}
+
+  /* jobs */
+  .jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;}
+  .job{
+    background:var(--cream);border:3px solid var(--brown);border-radius:20px;
+    overflow:hidden;box-shadow:5px 5px 0 rgba(74,55,40,0.15);
+  }
+  .poster{
+    height:130px;position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    font-family:'Baloo 2';font-weight:700;font-size:0.95rem;color:var(--brown);padding:10px;
+    background-image:linear-gradient(90deg, rgba(255,255,255,.5) 50%, transparent 50%),linear-gradient(rgba(255,255,255,.5) 50%, transparent 50%);
+    background-size:8px 8px;
+  }
+  /* Swap these color fills for a real poster photo later: replace the .poster div's
+     background-color with background-image:url('data:image/...;base64,...') background-size:cover */
+  .poster.j1{background-color:var(--pink);}
+  .poster.j2{background-color:var(--mint);}
+  .poster.j3{background-color:var(--lav);}
+  .poster.j4{background-color:var(--yellow);}
+  .poster .deco{position:absolute;opacity:0.9;}
+  .poster .deco.circle{width:54px;height:54px;border-radius:50%;border:2px solid var(--brown);background:rgba(255,255,255,.35);}
+  .poster .title{position:relative;z-index:1;transform:rotate(-3deg);text-shadow:2px 2px 0 rgba(255,255,255,.5);}
+  .job-body{padding:16px 18px 18px;}
+  .job-body .artist{color:var(--brown-soft);font-size:0.78rem;margin:0 0 4px;}
+  .job-body h3{margin:0 0 10px;font-size:1rem;font-family:'Mali';font-weight:700;}
+  .status{display:inline-flex;align-items:center;gap:6px;font-size:0.76rem;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:12px;border:2px solid var(--brown);}
+  .status.open{background:var(--mint);}
+  .status.low{background:var(--yellow);}
+  .status.full{background:#ffd7d7;}
+  .price-row{display:flex;justify-content:space-between;font-size:0.82rem;color:var(--brown-soft);padding-top:10px;border-top:2px dashed var(--brown-soft);}
+  .price-row strong{color:var(--brown);display:block;font-size:0.92rem;font-family:'Mali';font-weight:700;}
+
+  /* rules */
+  .rules{display:grid;gap:14px;max-width:640px;margin:0 auto;}
+  .rule{
+    display:flex;gap:14px;align-items:flex-start;padding:16px 18px;
+    background:var(--cream);border:3px solid var(--brown);border-radius:16px;
+    box-shadow:4px 4px 0 rgba(74,55,40,0.12);
+  }
+  .rule .heart{font-size:1.1rem;flex-shrink:0;}
+  .rule p{margin:0;color:var(--brown-soft);font-size:0.92rem;}
+  .rule p strong{color:var(--brown);font-family:'Mali';font-weight:700;}
+
+  /* reviews */
+  .reviews{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;}
+  .review{
+    background:var(--cream);border:3px solid var(--brown);border-radius:18px;padding:18px;
+    box-shadow:4px 4px 0 rgba(74,55,40,0.12);
+  }
+  .stars{color:#e8a93c;font-size:0.9rem;margin-bottom:8px;}
+  .review p{margin:0 0 12px;font-size:0.9rem;color:var(--brown);}
+  .review .who{font-size:0.78rem;color:var(--brown-soft);}
+
+  footer{padding:36px 0 calc(36px + env(safe-area-inset-bottom,0px));border-top:2px dashed var(--pink-deep);text-align:center;}
+  footer .wrap{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;color:var(--brown-soft);font-size:0.85rem;}
+  footer a{color:var(--pink-deep);text-decoration:none;font-weight:700;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">cutebite<span>queue</span> 🩷</div>
+    <div class="navlinks">
+      <a href="#queue">คิว &amp; ราคา</a>
+      <a href="#rules">กฎร้าน</a>
+      <a href="#reviews">รีวิว</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>กดบัตรให้ง่าย เหมือนกดปุ่มโปรด ✨</h1>
+    <p>เช็กคิวว่าง ราคามัดจำ กฎร้าน และรีวิวจากลูกค้าจริง กดปุ่มด้านล่างได้เลยค่ะ🩷</p>
+    <div class="keycaps">
+      <a class="keycap c1" href="#queue">
+        <span class="icon">🎫</span>
+        <span class="label">คิว &amp; ราคา</span>
+      </a>
+      <a class="keycap c2" href="#rules">
+        <span class="icon">📋</span>
+        <span class="label">กฎร้าน</span>
+      </a>
+      <a class="keycap c3" href="#reviews">
+        <span class="icon">⭐</span>
+        <span class="label">รีวิว</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="queue">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>งานที่เปิดให้บริการ</h2>
+      <p>อัปเดตล่าสุด 25 ก.ย. 2569</p>
+    </div>
+    <div class="jobs">
+
+      <div class="job">
+        <div class="poster j1">
+          <span class="deco circle" style="top:-16px;right:-14px;"></span>
+          <span class="deco" style="bottom:8px;left:10px;font-size:1.2rem;">✦</span>
+          <span class="title">LUNAR ECHO<br>LIVE IN BANGKOK</span>
+        </div>
+        <div class="job-body">
+          <p class="artist">LUNAR ECHO · อิมแพ็ค อารีน่า</p>
+          <h3>รอบ 14 ธ.ค. 2569</h3>
+          <span class="status low">เหลือ 3 คิว</span>
+          <div class="price-row">
+            <div>มัดจำ<strong>300 บาท</strong></div>
+            <div>ค่ากด<strong>150 บาท/ใบ</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="poster j2">
+          <span class="deco circle" style="bottom:-20px;left:-16px;"></span>
+          <span class="deco" style="top:10px;right:14px;font-size:1.2rem;">★</span>
+          <span class="title">NEON TIDE<br>ASIA TOUR</span>
+        </div>
+        <div class="job-body">
+          <p class="artist">NEON TIDE · ธันเดอร์โดม</p>
+          <h3>รอบ 20 ม.ค. 2570</h3>
+          <span class="status open">เปิดรับคิว</span>
+          <div class="price-row">
+            <div>มัดจำ<strong>250 บาท</strong></div>
+            <div>ค่ากด<strong>120 บาท/ใบ</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="poster j3">
+          <span class="deco circle" style="top:-18px;left:-10px;width:40px;height:40px;"></span>
+          <span class="deco" style="bottom:10px;right:16px;font-size:1.1rem;">✦</span>
+          <span class="title">CITY OF GHOSTS</span>
+        </div>
+        <div class="job-body">
+          <p class="artist">CITY OF GHOSTS · GMM Live House</p>
+          <h3>รอบ 8 พ.ย. 2569</h3>
+          <span class="status full">คิวเต็มแล้ว</span>
+          <div class="price-row">
+            <div>มัดจำ<strong>200 บาท</strong></div>
+            <div>ค่ากด<strong>100 บาท/ใบ</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="poster j4">
+          <span class="deco circle" style="bottom:-18px;right:-12px;"></span>
+          <span class="deco" style="top:8px;left:12px;font-size:1.2rem;">★</span>
+          <span class="title">VIOLET HOUR<br>ACOUSTIC NIGHT</span>
+        </div>
+        <div class="job-body">
+          <p class="artist">VIOLET HOUR · เมืองไทย GMM Live</p>
+          <h3>รอบ 2 ก.พ. 2570</h3>
+          <span class="status open">เปิดรับคิว</span>
+          <div class="price-row">
+            <div>มัดจำ<strong>350 บาท</strong></div>
+            <div>ค่ากด<strong>180 บาท/ใบ</strong></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>กฎและข้อตกลงของร้าน</h2>
+      <p>อ่านก่อนโอนมัดจำทุกครั้งนะ</p>
+    </div>
+    <div class="rules">
+      <div class="rule"><span class="heart">💗</span><p><strong>มัดจำ = ยืนยันคิว</strong> โอนภายในเวลาที่กำหนด ไม่งั้นคิวจะถูกปล่อยให้คิวถัดไป</p></div>
+      <div class="rule"><span class="heart">💗</span><p><strong>กดไม่ได้ คืนมัดจำเต็มจำนวน</strong> กรุณาทักสอบถามคิวก่อน</p></div>
+      <div class="rule"><span class="heart">💗</span><p><strong>กดได้แต่เปลี่ยนใจ ไม่คืนมัดจำ</strong> เพราะถือเป็นค่าดำเนินการที่เกิดขึ้นแล้ว</p></div>
+      <div class="rule"><span class="heart">💗</span><p><strong>ค่ากดชำระหลังกดสำเร็จ</strong> พร้อมแนบสลิปเป็นหลักฐานทุกครั้ง</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>รีวิวจากลูกค้า</h2>
+      <p>ขอบคุณทุกคนที่ไว้ใจ 🤍</p>
+    </div>
+    <div class="reviews">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>กดให้ทันเวลาจริง ไวมาก แจ้งอัปเดตตลอดตั้งแต่เปิดคิวจนได้บัตร</p>
+        <div class="who">— ลูกค้างาน LUNAR ECHO</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>รอบแรกกดพลาดเพราะระบบเว็บล่ม ร้านคืนมัดจำให้เต็มจำนวนตามกฎ ไว้ใจได้</p>
+        <div class="who">— ลูกค้างาน CITY OF GHOSTS</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★☆</div>
+        <p>ราคาค่ากดโอเค ไม่แพงเกินไป แจ้งเตือนก่อนเปิดคิวล่วงหน้าดีมาก</p>
+        <div class="who">— ลูกค้างาน NEON TIDE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2569 cutebitequeue</span>
+    <span>· ติดต่อสั่งจอง <a href="#">@cutebitequeue_th</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
